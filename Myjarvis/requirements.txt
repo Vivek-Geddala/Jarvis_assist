@@ -1,0 +1,10 @@
+pyttsx3
+SpeechRecognition
+openwakeword
+sounddevice
+numpy
+onnxruntime
+PySide6
+psutil
+google-generativeai
+pyautogui
