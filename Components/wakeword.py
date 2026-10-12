@@ -45,7 +45,7 @@ def _get_wakeword_model():
     print("Loading openWakeWord...")
 
     model = Model(
-        wakeword_models=["hey_jarvis"],
+        wakeword_models=["hey_jarvis","jarvis"],
         inference_framework="onnx",
         # The VAD gate can suppress valid wake words on some Windows microphone
         # drivers. The wake-word model itself is the primary detector here.
