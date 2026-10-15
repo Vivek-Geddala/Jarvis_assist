@@ -15,6 +15,7 @@ from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication
 
 from Components.assistant import run as run_assistant
+from Components.hotkey import listen_for_hotkey
 from ui.orb import IronOrb
 from ui.signals import signals
 
@@ -39,6 +40,9 @@ def main():
     signals.quit_app.connect(app.quit)
 
     # 🔥 Run assistant in background thread
+    hotkey_thread = threading.Thread(target=listen_for_hotkey, daemon=True)
+    hotkey_thread.start()
+
     assistant_thread = threading.Thread(target=run_assistant, daemon=True)
     assistant_thread.start()
 

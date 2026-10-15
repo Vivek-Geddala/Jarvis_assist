@@ -8,6 +8,7 @@ except ImportError:
     pyaudio = None
 import numpy as np
 from scipy.signal import resample_poly
+from Components.hotkey import activation_requested
 
 try:
     Model = import_module("openwakeword.model").Model
@@ -120,6 +121,13 @@ def is_wake_word():
     try:
         last_status_at = 0.0
         while True:
+
+            # Ctrl+I activates Jarvis just like the spoken wake word.
+            if activation_requested.is_set():
+                activation_requested.clear()
+                print("Ctrl+I activation detected.")
+                detector.reset()
+                return True
 
             audio_data = stream.read(
                 input_chunk,
